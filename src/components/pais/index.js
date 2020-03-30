@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
+//https://alligator.io/react/axios-react/
 class Pais extends Component {
 
     constructor(props) {
@@ -10,28 +12,37 @@ class Pais extends Component {
         };
     }
 
-    save = (event) => {
+    save = event => {
         event.preventDefault();
-        console.log(`The values are ${this.state.nome}`);
-        this.setState({
-            nome: ''
-        })
+
+        const pais = {
+            nome: this.state.nome
+        };
+
+        console.log(pais);
+
+        axios.post(`http://localhost:8080/paises`, { pais })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
     }
 
-    setNome = (event) => {
-        this.setState({ nome: event.target.value })
+    setNome = event => {
+        this.setState({
+            nome: event.target.value
+        })
     }
 
     render() {
         return (
             <div className="card">
                 <form onSubmit={this.save}>
-
                     <div className="card-header">Cadastro de Pais</div>
                     <div className="card-body">
                         <div className="form-group">
                             <label htmlFor="nome">Nome</label>
-                            <input type="text" name="nome" value={this.state.nome} onChange={this.setNome} className="form-control" id="nome"></input>
+                            <input type="text" name="nome" onChange={this.setNome} className="form-control" id="nome"></input>
                         </div>
                         <button type="submit" className="btn btn-primary">Cadastrar Pais</button>
                     </div>
