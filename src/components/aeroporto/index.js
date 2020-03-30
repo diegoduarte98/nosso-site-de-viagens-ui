@@ -6,9 +6,9 @@ class Aeroporto extends Component {
     constructor() {
         super();
         this.state = {
-            paises: [],
             nome: '',
-            paisSelecionado: ""
+            paisSelecionado: '',
+            paises: []
         };
     }
 
@@ -51,7 +51,7 @@ class Aeroporto extends Component {
                         <div className="form-group">
                             <label htmlFor="select-pais-aeroporto">Pais</label>
                             <select onChange={(e) => this.setState({ paisSelecionado: e.target.value })} className="form-control" id="select-pais-aeroporto">
-                                <option value="">Selecione</option>)
+                                <option value="">Selecione</option>
                                 {this.state.paises.map((pais) => <option key={pais.id} value={pais.id}>{pais.nome}</option>)}
                             </select>
                         </div>
