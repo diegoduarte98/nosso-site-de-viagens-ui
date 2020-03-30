@@ -26,12 +26,6 @@ class Pais extends Component {
             })
     }
 
-    setNome = event => {
-        this.setState({
-            nome: event.target.value
-        })
-    }
-
     render() {
         return (
             <div className="card">
@@ -40,7 +34,7 @@ class Pais extends Component {
                     <div className="card-body">
                         <div className="form-group">
                             <label htmlFor="nome">Nome</label>
-                            <input type="text" name="nome" onChange={this.setNome} className="form-control" id="nome"></input>
+                            <input type="text" name="nome" onChange={(e) => this.setState({ nome: e.target.value })} className="form-control" id="nome"></input>
                         </div>
                         <button type="submit" className="btn btn-primary">Cadastrar Pais</button>
                     </div>
