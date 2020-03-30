@@ -19,9 +19,7 @@ class Pais extends Component {
             nome: this.state.nome
         };
 
-        console.log(pais);
-
-        axios.post(`http://localhost:8080/paises`, { pais })
+        axios.post(`http://localhost:8080/paises`, pais)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
