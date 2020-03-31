@@ -27,10 +27,13 @@ class Rota extends Component {
     save = event => {
         event.preventDefault();
 
+        let ul = document.querySelector(".errors ul");
+        ul.textContent = "";
+
         const rota = {
             nome: this.state.nome,
-            origem_id: this.state.origemSelecionado,
-            destino_id: this.state.destinoSelecionado,
+            origem: this.state.origemSelecionado,
+            destino: this.state.destinoSelecionado,
             duracao: this.state.duracao
         };
 
@@ -38,6 +41,12 @@ class Rota extends Component {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
+            }).catch(err => {
+                err.response.data.fieldErrors.forEach(element => {
+                    let li = document.createElement("li");
+                    li.textContent = element.field + " - " + element.message;
+                    ul.appendChild(li);
+                });
             });
     }
 
@@ -58,7 +67,7 @@ class Rota extends Component {
                                 <label htmlFor="select-origem">Origem</label>
                                 <select onChange={(e) => this.setState({ origemSelecionado: e.target.value })} className="form-control" id="select-origem">
                                     <option value="">Selecione</option>
-                                    {this.state.aeroportos.map((aeroporto) => <option key={aeroporto.id} value={aeroporto.id}>{aeroporto.nome}</option>)}
+                                    {this.state.aeroportos.map((aeroporto) => <option key={aeroporto.nome} value={aeroporto.nome}>{aeroporto.nome}</option>)}
                                 </select>
                             </div>
 
@@ -66,7 +75,7 @@ class Rota extends Component {
                                 <label htmlFor="select-destino">Destino</label>
                                 <select onChange={(e) => this.setState({ destinoSelecionado: e.target.value })} className="form-control" id="select-destino">
                                     <option value="">Selecione</option>
-                                    {this.state.aeroportos.map((aeroporto) => <option key={aeroporto.id} value={aeroporto.id}>{aeroporto.nome}</option>)}
+                                    {this.state.aeroportos.map((aeroporto) => <option key={aeroporto.nome} value={aeroporto.nome}>{aeroporto.nome}</option>)}
                                 </select>
                             </div>
 
@@ -79,6 +88,9 @@ class Rota extends Component {
                         <button type="submit" className="btn btn-primary">Cadastrar Rota</button>
                     </div>
                 </form>
+                <div className="errors">
+                    <ul></ul>
+                </div>
             </div>
         );
     }
