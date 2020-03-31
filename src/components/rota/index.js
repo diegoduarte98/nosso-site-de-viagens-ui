@@ -20,7 +20,6 @@ class Rota extends Component {
         axios.get(`http://localhost:8080/aeroportos`)
             .then(res => {
                 const aeroportos = res.data;
-                console.log(aeroportos);
                 this.setState({ aeroportos });
             })
     }

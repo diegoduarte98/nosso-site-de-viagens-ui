@@ -16,7 +16,6 @@ class Aeroporto extends Component {
         axios.get(`http://localhost:8080/paises`)
             .then(res => {
                 const paises = res.data;
-                console.log(paises);
                 this.setState({ paises });
             })
     }
