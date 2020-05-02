@@ -5,13 +5,19 @@ import Rota from './components/rota/'
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Menu from './components/menu';
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="container">
-      <Pais />
-      <Aeroporto />
-      <Rota />
+      <Menu />
+
+      <Switch>
+        <Route path="/paises" component={Pais} />
+        <Route path="/aeroportos" component={Aeroporto} />
+        <Route path="/rotas" component={Rota} />
+      </Switch>
     </div>
   );
 }

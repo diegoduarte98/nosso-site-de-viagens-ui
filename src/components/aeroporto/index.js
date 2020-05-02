@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Card from '../card';
 
 class Aeroporto extends Component {
 
@@ -37,28 +38,25 @@ class Aeroporto extends Component {
 
     render() {
         return (
-            <div className="card">
+            <Card title="Cadastro de Aeroporto">
                 <form onSubmit={this.save}>
-                    <div className="card-header">Cadastro de Aeroporto</div>
 
-                    <div className="card-body">
-                        <div className="form-group">
-                            <label htmlFor="input-aeroporto">Nome</label>
-                            <input type="text" onChange={(e) => this.setState({ nome: e.target.value })} className="form-control" id="input-aeroporto" />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="select-pais-aeroporto">Pais</label>
-                            <select onChange={(e) => this.setState({ paisSelecionado: e.target.value })} className="form-control" id="select-pais-aeroporto">
-                                <option value="">Selecione</option>
-                                {this.state.paises.map((pais) => <option key={pais.id} value={pais.id}>{pais.nome}</option>)}
-                            </select>
-                        </div>
-
-                        <button type="submit" className="btn btn-primary">Cadastrar Aeroporto</button>
+                    <div className="form-group">
+                        <label htmlFor="input-aeroporto">Nome</label>
+                        <input type="text" onChange={(e) => this.setState({ nome: e.target.value })} className="form-control" id="input-aeroporto" />
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="select-pais-aeroporto">Pais</label>
+                        <select onChange={(e) => this.setState({ paisSelecionado: e.target.value })} className="form-control" id="select-pais-aeroporto">
+                            <option value="">Selecione</option>
+                            {this.state.paises.map((pais) => <option key={pais.id} value={pais.id}>{pais.nome}</option>)}
+                        </select>
+                    </div>
+
+                    <button type="submit" className="btn btn-primary">Cadastrar Aeroporto</button>
                 </form>
-            </div>
+            </Card>
         );
     }
 }
